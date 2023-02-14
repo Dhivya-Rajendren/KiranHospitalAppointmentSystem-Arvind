@@ -1,0 +1,22 @@
+﻿@model IEnumerable<KiranHospitalAppointmentSystem.Models.Doctor>
+
+    <h2 style="margin-left:200px">Doctors Detail</h2>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Doctor Name</th>
+            <th>Contact</th>
+            <th>Doctor Specialized In</th>
+            <th>Action</th>
+        </tr>
+
+        @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.DoctorName</td>
+            <td>@item.Contact</td>
+            <td>@item.SpecializedIn</td>
+            <td><a  asp-action="GetDoctorById" asp-route-doctorID=@item.DoctorId class="btn btn-primary">Details</a></td>
+        </tr>
+    }
+</table>

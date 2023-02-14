@@ -1,0 +1,9 @@
+﻿
+
+
+<h2 style="margin-left:200px;color:brown">@TempData["Title"]</h2>
+
+@foreach(var item in (IEnumerable<string>) TempData["Patients"])
+{
+   <p>@item</p>
+}

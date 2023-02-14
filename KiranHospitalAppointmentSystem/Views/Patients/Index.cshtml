@@ -1,0 +1,27 @@
+﻿
+@* This view is a strongly typed view *@
+ @*  setting what is the model class *@
+
+@model IEnumerable<KiranHospitalAppointmentSystem.Models.Patient>
+
+
+    <h2 style="margin-left:200px">Patients Detail</h2>
+
+    @foreach (var item in Model)// used for getting the model data 
+   {
+       <p>@item.PatientName      @item.Email</p>
+   }
+
+
+
+
+
+@*  HTML code + C# code -->Razor syntax  
+
+<h2 style="margin-left:200px;color:brown">@ViewBag.Title</h2>
+
+@foreach(var item in ViewBag.Patients)
+{
+   <p>@item.PatientName+"   "+@item.</p>
+}
+*@
