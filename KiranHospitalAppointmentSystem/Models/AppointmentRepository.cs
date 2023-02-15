@@ -4,6 +4,13 @@ namespace KiranHospitalAppointmentSystem.Models
 {
     public class AppointmentRepository : IAppointmentRepository
     {
+        public List<Doctor> AddNewDoctor(Doctor doctor)
+        {
+            List<Doctor> doctors = GetAllDoctors(); // Beginning there are 2 doctors
+            doctors.Add(doctor);// Will add one more doctor in the list 
+            return doctors;// we are returning 3
+        }
+
         public List<Appointment> GetAllAppointments()
         {
             throw new System.NotImplementedException();

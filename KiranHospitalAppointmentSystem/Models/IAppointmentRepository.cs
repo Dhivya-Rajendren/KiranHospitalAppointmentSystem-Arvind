@@ -12,5 +12,7 @@ namespace KiranHospitalAppointmentSystem.Models
         List<Doctor> GetAllDoctors();
 
         List<Appointment> GetAllAppointments();
+
+        List<Doctor> AddNewDoctor(Doctor doctor);
     }
 }

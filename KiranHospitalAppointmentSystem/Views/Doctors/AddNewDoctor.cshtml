@@ -1,0 +1,51 @@
+﻿@model KiranHospitalAppointmentSystem.Models.Doctor
+
+
+
+<form asp-action="AddNewDoctor">
+
+    <input type="text" placeholder="Enter Doctor Id" asp-for=DoctorId/>
+<br/>
+<br/>
+    <input type="text" placeholder="Enter DoctorName" asp-for=DoctorName/>
+<br/>
+<br/>
+
+    <input type="text" placeholder="Enter Doctor Email" asp-for=Email/>
+<br/>
+<br/>
+
+    <input type="text" placeholder="Enter Doctor Contact" asp-for=Contact/>
+<br/><br/>
+
+
+    <input type="text" placeholder="Enter Doctor Experience" asp-for=YearsOfExperience/>
+<br/><br/>
+    <input type="text" placeholder="Enter Doctor Specialization" asp-for=SpecializedIn/>
+<br/><br/><br/>
+
+<input type="submit" class="btn btn-secondary"/>
+
+@if(ViewBag.Doctors!=null)
+    {
+        <table class="table table-bordered">
+        <tr>
+            <th>Doctor Name</th>
+            <th>Contact</th>
+            <th>Doctor Specialized In</th>
+            <th>Action</th>
+        </tr>
+
+        @foreach(var item in ViewBag.Doctors)
+    {
+        <tr>
+            <td>@item.DoctorName</td>
+            <td>@item.Contact</td>
+            <td>@item.SpecializedIn</td>
+        </tr>
+    }
+</table>
+
+    }
+
+</form>

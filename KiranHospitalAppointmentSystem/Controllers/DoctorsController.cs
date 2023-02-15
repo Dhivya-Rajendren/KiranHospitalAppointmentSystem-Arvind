@@ -21,5 +21,20 @@ namespace KiranHospitalAppointmentSystem.Controllers
             Doctor doc = doctors.Find(d=>d.DoctorId==doctorID);
             return View(doc);
         }
+
+        public IActionResult AddNewDoctor()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddNewDoctor(Doctor doctor)
+        {
+            AppointmentRepository repo = new AppointmentRepository();
+           // repo.AddNewDoctor(doctor);
+            ViewBag.Doctors = repo.AddNewDoctor(doctor);
+            return View();
+        }
+
     }
 }
