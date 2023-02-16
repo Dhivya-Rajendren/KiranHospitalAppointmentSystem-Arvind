@@ -12,45 +12,35 @@ namespace KiranHospitalAppointmentSystem.Controllers
         //default action method 
         public IActionResult Index()
         {
-            AppointmentRepository repo = new AppointmentRepository();
+           AppointmentRepositoryFromSQL repo= new AppointmentRepositoryFromSQL();
             List<Patient> patients = repo.GetAllPatiens();
-          string pageTitle = "Patients Detail From View Bag";
-
-            ViewBag.Title = pageTitle;
-
-            List<string> patientsName = new List<string>() { "Geetha", "Rama", "Prem", "Kamal" };
-
-            ViewBag.Patients = patientsName;
-                  
-            //return View(); // It is a empty View 
-             // This is how we pass data from a controlelr to view using Models
-                 return View(patients); //It is a view based on List of patients.
+            return View(patients);
         }
 
-       public IActionResult GetPatients()
-        {
-            string pageTitle = "Patients Detail from View Data";
+       //public IActionResult GetPatients()
+       // {
+       //     string pageTitle = "Patients Detail from View Data";
 
-            ViewData["Title"] = pageTitle;
+       //     ViewData["Title"] = pageTitle;
 
-            List<string> patientsName = new List<string>() { "Geetha", "Rama", "Prem", "Kamal" };
+       //     List<string> patientsName = new List<string>() { "Geetha", "Rama", "Prem", "Kamal" };
 
-            ViewData["Patients"] = patientsName;
+       //     ViewData["Patients"] = patientsName;
 
-            return View();
-        }
-         public IActionResult GetAllPatients()
-        {
-            string pageTitle = "Patients Detail from Temp Data";
+       //     return View();
+       // }
+       //  public IActionResult GetAllPatients()
+       // {
+       //     string pageTitle = "Patients Detail from Temp Data";
 
-            TempData["Title"] = pageTitle;
+       //     TempData["Title"] = pageTitle;
 
-            List<string> patientsName = new List<string>() { "Geetha", "Rama", "Prem", "Kamal" };
+       //     List<string> patientsName = new List<string>() { "Geetha", "Rama", "Prem", "Kamal" };
 
-            TempData["Patients"] = patientsName;
+       //     TempData["Patients"] = patientsName;
 
-            return View();
-        }
+       //     return View();
+       // }
 
 
 

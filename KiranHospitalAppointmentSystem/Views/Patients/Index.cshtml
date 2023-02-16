@@ -7,10 +7,22 @@
 
     <h2 style="margin-left:200px">Patients Detail</h2>
 
-    @foreach (var item in Model)// used for getting the model data 
+
+    <div class="card-group">
+         @foreach (var item in Model)// used for getting the model data 
    {
-       <p>@item.PatientName      @item.Email</p>
+       <div class="card w-25">
+           <div class="card-header">
+               <h2>@item.PatientName</h2>
+               </div>
+               <div class="card-body">
+                   <h4>@item.PatientHistory</h4>
+                   </div>
+           </div>
    }
+
+    </div>
+   
 
 
 
