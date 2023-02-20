@@ -17,33 +17,28 @@ namespace KiranHospitalAppointmentSystem.Controllers
             return View(patients);
         }
 
-       //public IActionResult GetPatients()
-       // {
-       //     string pageTitle = "Patients Detail from View Data";
+      public IActionResult AddNewPatient()
+        {
+            return View();
+        }
 
-       //     ViewData["Title"] = pageTitle;
+        [HttpPost]
+        public IActionResult AddNewPatient(Patient patient)
+        {
+            AppointmentRepositoryFromSQL repo = new AppointmentRepositoryFromSQL();
+            repo.AddNewPatient(patient);
+            return RedirectToAction("Index");
 
-       //     List<string> patientsName = new List<string>() { "Geetha", "Rama", "Prem", "Kamal" };
+        }
 
-       //     ViewData["Patients"] = patientsName;
+        public IActionResult Delete (int patientId)
+        {
+            AppointmentRepositoryFromSQL repo = new AppointmentRepositoryFromSQL();
 
-       //     return View();
-       // }
-       //  public IActionResult GetAllPatients()
-       // {
-       //     string pageTitle = "Patients Detail from Temp Data";
+            repo.DeletePatient(patientId);
+            return RedirectToAction("Index");
 
-       //     TempData["Title"] = pageTitle;
-
-       //     List<string> patientsName = new List<string>() { "Geetha", "Rama", "Prem", "Kamal" };
-
-       //     TempData["Patients"] = patientsName;
-
-       //     return View();
-       // }
-
-
-
+        }
 
 
 

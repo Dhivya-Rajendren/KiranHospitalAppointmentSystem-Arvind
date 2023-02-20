@@ -11,6 +11,16 @@ namespace KiranHospitalAppointmentSystem.Models
             return doctors;// we are returning 3
         }
 
+        public void AddNewPatient(Patient patient)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void DeletePatient(int patinetId)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<Appointment> GetAllAppointments()
         {
             throw new System.NotImplementedException();

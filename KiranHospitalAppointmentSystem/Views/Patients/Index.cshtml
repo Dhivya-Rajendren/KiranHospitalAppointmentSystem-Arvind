@@ -18,12 +18,17 @@
                <div class="card-body">
                    <h4>@item.PatientHistory</h4>
                    </div>
+                     <div class="card-footer">
+               <a asp-action="Delete" class="btn btn-danger" asp-route-patientId=@item.PatientId>Delete</a>
+               </div>
            </div>
+
+         
    }
 
     </div>
    
-
+    <a asp-action="AddNewPatient" class="btn btn-warning"> New Patient</a>
 
 
 

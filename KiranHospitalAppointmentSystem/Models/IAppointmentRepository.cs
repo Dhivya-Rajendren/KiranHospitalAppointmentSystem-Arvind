@@ -16,5 +16,9 @@ namespace KiranHospitalAppointmentSystem.Models
 
         // Add the data 
         List<Doctor> AddNewDoctor(Doctor doctor);
+
+        void AddNewPatient(Patient patient);
+
+        void DeletePatient(int patinetId);
     }
 }

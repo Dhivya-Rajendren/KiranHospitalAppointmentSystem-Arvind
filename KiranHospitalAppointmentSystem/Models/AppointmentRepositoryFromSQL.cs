@@ -20,6 +20,26 @@ namespace KiranHospitalAppointmentSystem.Models
             throw new System.NotImplementedException();
         }
 
+
+
+        public void AddNewPatient(Patient patient)//(string pName, string email, long contact,string pHistory)
+        {
+            string connectionString = "Server=Dhivya-pc\\Sqlexpress;database=AppointmentDB_BN4138;integrated security=true";
+            con = new SqlConnection(connectionString);
+            con.Open();
+            com = new SqlCommand("insert into tbl_Patient values('" + patient.PatientName + "','" + patient.Email + "'," + patient.Contact + ",'" + patient.PatientHistory + "')", con);
+            com.ExecuteNonQuery();//DML queries
+        }
+
+        public void DeletePatient(int patientId)
+        {
+            string connectionString = "Server=Dhivya-pc\\Sqlexpress;database=AppointmentDB_BN4138;integrated security=true";
+            con = new SqlConnection(connectionString);
+            con.Open();
+            com = new SqlCommand("Delete from tbl_Patient where patientId=" + patientId, con);
+            com.ExecuteNonQuery();
+        }
+
         public List<Appointment> GetAllAppointments()
         {
             throw new System.NotImplementedException();
