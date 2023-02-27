@@ -1,20 +1,23 @@
-using KiranHospitalAppointmentSystem.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SimpleAuthenticationDemo.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace KiranHospitalAppointmentSystem
+namespace SimpleAuthenticationDemo
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)//Constructor Injection 
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -24,17 +27,14 @@ namespace KiranHospitalAppointmentSystem
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews(); //Registering the service needed for building and executing the application using MVC arch.
-            
-            //Registering the dependency
-            services.AddTransient<IAppointmentRepository, AppointmentRepositoryFromSQL>();
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDatabaseDeveloperPageExceptionFilter();
 
-            //services.AddSingleton();
-            //services.AddScoped();
-
-        
-
-
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +43,7 @@ namespace KiranHospitalAppointmentSystem
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseMigrationsEndPoint();
             }
             else
             {
@@ -53,24 +54,17 @@ namespace KiranHospitalAppointmentSystem
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseRouting();// This middleware will find what is the endpoint that is matching the incoming request 
+            app.UseRouting();
 
-            // www.cloudkampus.com/home
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
-            //list of endpoints
-
-            //www.cloudkampus.com/home
-            //www.cloudkampus.com/home/index
-            //www.cloudkampus.com/Contact/index
-            //www.cloudkampus.com/doctors/index
-
-            app.UseEndpoints(endpoints =>     // This middleware is place were actually the endpoints that gets executed.
+            app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

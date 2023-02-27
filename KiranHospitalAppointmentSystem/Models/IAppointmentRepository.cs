@@ -20,5 +20,7 @@ namespace KiranHospitalAppointmentSystem.Models
         void AddNewPatient(Patient patient);
 
         void DeletePatient(int patinetId);
+
+        List<string> GetDoctorsAvailable();
     }
 }

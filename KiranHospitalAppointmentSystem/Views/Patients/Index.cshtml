@@ -4,8 +4,11 @@
 
 @model IEnumerable<KiranHospitalAppointmentSystem.Models.Patient>
 
+    <h1>@ViewBag.Author</h1>
+    <h3>@ViewBag.Role</h3>
 
     <h2 style="margin-left:200px">Patients Detail</h2>
+    <p>@ViewBag.Key</p>
 
 
     <div class="card-group">
@@ -19,6 +22,8 @@
                    <h4>@item.PatientHistory</h4>
                    </div>
                      <div class="card-footer">
+               <a asp-action="PatientDetail" class="btn btn-info" asp-route-patientId=@item.PatientId>Details</a>
+
                <a asp-action="Delete" class="btn btn-danger" asp-route-patientId=@item.PatientId>Delete</a>
                </div>
            </div>

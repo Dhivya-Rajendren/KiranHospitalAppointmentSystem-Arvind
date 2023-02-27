@@ -1,0 +1,12 @@
+﻿@model KiranHospitalAppointmentSystem.Models.Patient
+
+<partial name="_patientPartialView"/>
+
+
+    <div class="card-footer">
+        <p>Are you confirm to delete the Patient Details <a asp-action="ConfirmDelete" asp-route-patientId=@Model.PatientId class="btn btn-sm btn-success">Yes</a>
+            <a asp-action="Index" class="btn btn-danger">No</a>
+
+        </p>
+    </div>
+</div>

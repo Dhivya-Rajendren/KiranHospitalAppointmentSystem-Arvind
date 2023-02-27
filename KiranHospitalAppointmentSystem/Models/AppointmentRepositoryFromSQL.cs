@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace KiranHospitalAppointmentSystem.Models
 {
     public class AppointmentRepositoryFromSQL : IAppointmentRepository
     {
+        private readonly IConfiguration configuration;
+
         //ADO .NET has classes used for connecting with Sql and executing the Sql
         // Use a provider for SQL Server 
 
@@ -14,6 +17,13 @@ namespace KiranHospitalAppointmentSystem.Models
         SqlConnection con = null; // Class used for making a connection between the application and database
         SqlCommand com= null;// class used for building and executing our SQL comand (DML)
         SqlDataReader reader = null;// Class used for fetching the data alone.
+        string connectionString;
+
+        public AppointmentRepositoryFromSQL(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+            connectionString = this.configuration.GetConnectionString("KiranAppointment_CS");
+        }
 
         public List<Doctor> AddNewDoctor(Doctor doctor)
         {
@@ -24,7 +34,7 @@ namespace KiranHospitalAppointmentSystem.Models
 
         public void AddNewPatient(Patient patient)//(string pName, string email, long contact,string pHistory)
         {
-            string connectionString = "Server=Dhivya-pc\\Sqlexpress;database=AppointmentDB_BN4138;integrated security=true";
+           // string connectionString = "Server=Dhivya-pc\\Sqlexpress;database=AppointmentDB_BN4138;integrated security=true";
             con = new SqlConnection(connectionString);
             con.Open();
             com = new SqlCommand("insert into tbl_Patient values('" + patient.PatientName + "','" + patient.Email + "'," + patient.Contact + ",'" + patient.PatientHistory + "')", con);
@@ -33,7 +43,7 @@ namespace KiranHospitalAppointmentSystem.Models
 
         public void DeletePatient(int patientId)
         {
-            string connectionString = "Server=Dhivya-pc\\Sqlexpress;database=AppointmentDB_BN4138;integrated security=true";
+            //string connectionString = "Server=Dhivya-pc\\Sqlexpress;database=AppointmentDB_BN4138;integrated security=true";
             con = new SqlConnection(connectionString);
             con.Open();
             com = new SqlCommand("Delete from tbl_Patient where patientId=" + patientId, con);
@@ -52,7 +62,7 @@ namespace KiranHospitalAppointmentSystem.Models
 
         public List<Patient> GetAllPatiens()
         {
-            string connectionString = "Server=Dhivya-pc\\Sqlexpress;database=AppointmentDB_BN4138;integrated security=true";
+            //string connectionString = "Server=Dhivya-pc\\Sqlexpress;database=AppointmentDB_BN4138;integrated security=true";
             con = new SqlConnection(connectionString);
             con.Open();
             com = new SqlCommand("Select * from tbl_patient", con);//Building the SQL query to run against our database 
@@ -71,6 +81,12 @@ namespace KiranHospitalAppointmentSystem.Models
             reader.Close();
             con.Close();
             return patients;
+        }
+
+        public List<string> GetDoctorsAvailable()
+        {
+            List<string> doctorsAvailable = new List<string>() { "kiran", "Shahin", "Kamal", "Sowmiya" };
+            return doctorsAvailable;
         }
     }
 }

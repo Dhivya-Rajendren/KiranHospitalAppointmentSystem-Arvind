@@ -78,6 +78,11 @@ namespace KiranHospitalAppointmentSystem.Models
 
         }
 
+        public List<string> GetDoctorsAvailable()
+        {
+            throw new System.NotImplementedException();
+        }
+
         //Ado .net -DB connection 
     }
 }
